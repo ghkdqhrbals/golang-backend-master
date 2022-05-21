@@ -19,7 +19,7 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: simple_bank
         port:
-          5423:5432
+          - 5423:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
