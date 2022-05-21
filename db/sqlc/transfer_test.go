@@ -56,20 +56,20 @@ func TestDeleteTransfer(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func TestListTransfer(t *testing.T) {
-	var listOfTransfer []Transfers
+// func TestListTransfer(t *testing.T) {
+// 	var listOfTransfer []Transfers
 
-	arg := ListTransferParams{
-		Limit:  10,
-		Offset: 1,
-	}
+// 	arg := ListTransferParams{
+// 		Limit:  10,
+// 		Offset: 1,
+// 	}
 
-	listOfTransfer, err := testQueries.ListTransfer(context.Background(), arg)
-	require.NoError(t, err)
-	require.Len(t, listOfTransfer, 10)
+// 	listOfTransfer, err := testQueries.ListTransfer(context.Background(), arg)
+// 	require.NoError(t, err)
+// 	require.Len(t, listOfTransfer, 10)
 
-	for _, transfer := range listOfTransfer {
-		require.NotEmpty(t, transfer)
-	}
+// 	for _, transfer := range listOfTransfer {
+// 		require.NotEmpty(t, transfer)
+// 	}
 
-}
+// }
