@@ -15,7 +15,7 @@ jobs:
     services:
       postgres:
         # Docker Hub image
-        image: postgres:12-alpine
+        image: postgres:12
         env:
           POSTGRES_PASSWORD: secret
           POSTGRES_USER: root
