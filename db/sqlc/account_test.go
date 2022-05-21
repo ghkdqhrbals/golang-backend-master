@@ -79,9 +79,13 @@ func TestUpdateAccounts(t *testing.T) {
 }
 
 func TestListAccounts(t *testing.T) {
+
 	arg := ListAccountParams{
 		Limit:  10,
 		Offset: 1,
+	}
+	for i := int64(0); i < int64(arg.Limit); i++ {
+		createRandomAccounts(t)
 	}
 
 	accounts, err := testQueries.ListAccount(context.Background(), arg)
