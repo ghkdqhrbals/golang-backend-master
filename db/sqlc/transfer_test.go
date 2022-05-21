@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -21,9 +20,6 @@ func createTransferTest(t *testing.T, fromID int64, toID int64, amount int64) Tr
 
 	fromAccount, _ := testQueries.GetAccount(context.Background(), arg.FromAccountID)
 	toAccount, _ := testQueries.GetAccount(context.Background(), arg.ToAccountID)
-	fmt.Println("Before")
-	fmt.Println("Sender Account Balance:", fromAccount.Balance)
-	fmt.Println("Receiver Account Balance:", toAccount.Balance)
 
 	// 송신자 빼기
 	arg1 := UpdateAccountParams{
@@ -46,9 +42,6 @@ func createTransferTest(t *testing.T, fromID int64, toID int64, amount int64) Tr
 
 	fromAccount, _ = testQueries.GetAccount(context.Background(), arg.FromAccountID)
 	toAccount, _ = testQueries.GetAccount(context.Background(), arg.ToAccountID)
-	fmt.Println("After")
-	fmt.Println("Sender Account Balance:", fromAccount.Balance)
-	fmt.Println("Receiver Account Balance:", toAccount.Balance)
 
 	return tx3
 }
@@ -78,14 +71,5 @@ func TestListTransfer(t *testing.T) {
 	for _, transfer := range listOfTransfer {
 		require.NotEmpty(t, transfer)
 	}
-
-	for i := 0; i < len(listOfTransfer); i++ {
-		fmt.Println("------------------------------")
-		fmt.Println("ID:", listOfTransfer[i].ID)
-		fmt.Println("From:", listOfTransfer[i].FromAccountID)
-		fmt.Println("To:", listOfTransfer[i].ToAccountID)
-		fmt.Println("CreatedAt:", listOfTransfer[i].CreatedAt)
-	}
-	fmt.Println("------------------------------")
 
 }

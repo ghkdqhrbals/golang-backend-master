@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -55,7 +54,6 @@ func TestGetAccounts(t *testing.T) {
 	account1 := createRandomAccounts(t)
 	account2, err := testQueries.GetAccount(context.Background(), account1.ID)
 
-	fmt.Println(account2.ID)
 	t.Log(account2.ID)
 
 	require.NoError(t, err)
