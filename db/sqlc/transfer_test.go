@@ -46,9 +46,9 @@ func createTransferTest(t *testing.T, fromID int64, toID int64, amount int64) Tr
 	return tx3
 }
 
-func TestCreateTransfer(t *testing.T) {
-	createTransferTest(t, 7, 8, 10)
-}
+// func TestCreateTransfer(t *testing.T) {
+// 	createTransferTest(t, 7, 8, 10)
+// }
 
 func TestDeleteTransfer(t *testing.T) {
 	err := testQueries.DeleteTransfer(context.Background(), 1)
