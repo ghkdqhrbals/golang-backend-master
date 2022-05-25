@@ -6,21 +6,27 @@ import (
 	"fmt"
 )
 
+type Store interface {
+	Querier
+	TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error)
+}
+
 // 쿼리들을 저장
-type Store struct {
-	Queries *Queries //앞의 Queries 생략하면 *Queries에서 가져와 만들어짐.
-	db      *sql.DB
+type SQLStore struct {
+	*Queries //앞의 Queries 생략하면 *Queries에서 가져와 만들어짐.
+	db       *sql.DB
 }
 
 // 만들어진 Store 주소반환
-func NewStore(db *sql.DB) *Store {
-	return &Store{db: db,
+func NewStore(db *sql.DB) Store {
+	return &SQLStore{
+		db:      db,
 		Queries: New(db),
 	}
 }
 
 // 쿼리문을 실행한다. Beigin, Rollback조건, commit로 최종실행 확인
-func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
+func (store *SQLStore) execTx(ctx context.Context, fn func(*Queries) error) error {
 	tx, err := store.db.BeginTx(ctx, nil) // BEGIN
 	if err != nil {
 		return err
@@ -54,7 +60,7 @@ type TransferTxResult struct {
 var txKey = struct{}{}
 
 // TransferTxParams[from,to,amount]를 파라미터로 받아서, Trasnfer을 생성하고, ID의 출금,입금 내역인 entry를 각각 생성
-func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
+func (store *SQLStore) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
 	var result TransferTxResult
 
 	err := store.execTx(ctx, func(q *Queries) error {

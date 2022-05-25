@@ -6,6 +6,48 @@
 ![Supported Go Versions](https://img.shields.io/badge/Go-1.16%2C%201.17-lightgrey.svg)
 [![GitHub Release](https://img.shields.io/github/release/golang-migrate/migrate.svg)](https://github.com/golang-migrate/migrate/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/golang-migrate/migrate)](https://goreportcard.com/report/github.com/golang-migrate/migrate)
+# Updates
+* gomock 라이브러리를 이용하여 서비스 레이어의 테스트에서 DB 의존성을 제거함.
+즉, fake DB를 통해 테스트함.
+
+### sqlc로 쿼리문 인터페이스 생성
+```bash
+type Querier interface {
+    AddAccountBalance(ctx context.Context, arg AddAccountBalanceParams) (Account, error)
+    CreateAccount(ctx context.Context, arg CreateAccountParams) (Account, error)
+    CreateEntry(ctx context.Context, arg CreateEntryParams) (Entry, error)
+    CreateTransfer(ctx context.Context, arg CreateTransferParams) (Transfer, error)
+    DeleteAccount(ctx context.Context, id int64) error
+    GetAccount(ctx context.Context, id int64) (Account, error)
+    GetAccountForUpdate(ctx context.Context, id int64) (Account, error)
+    GetEntry(ctx context.Context, id int64) (Entry, error)
+    GetTransfer(ctx context.Context, id int64) (Transfer, error)
+    ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Account, error)
+    ListEntries(ctx context.Context, arg ListEntriesParams) ([]Entry, error)
+    ListTransfers(ctx context.Context, arg ListTransfersParams) ([]Transfer, error)
+    UpdateAccount(ctx context.Context, arg UpdateAccountParams) (Account, error)
+}
+```
+sqlc의 emit_interface=true를 통해 query의 account.go, transfer.sql, entry.sql의 인터페이스를 생성.
+
+
+### mockgen으로 기본함수생성
+```bash
+type Store interface {
+	Querier
+	TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error)
+}
+```
+이후 simplebank/ghkdqhrbals/db/sqlc/store.go에 Store 인터페이스 정의
+이 인터페이스는 의존성을 제거한 db테스트에 사용
+
+
+
+```bash
+mockgen -destination db/mock/store.go github.com/ghkdqhrbals/simplebank/db/sqlc Store
+```
+mockgen을 통해 앞서 정의한 Store 인터페이스를 받아오고, 가상으로 실행하는 함수를 자동으로 정의.
+
 
 # migrate
 
