@@ -49,6 +49,58 @@ mockgen -destination db/mock/store.go github.com/ghkdqhrbals/simplebank/db/sqlc 
 mockgen을 통해 앞서 정의한 Store 인터페이스를 받아오고, 가상으로 실행하는 함수를 자동으로 정의.
 
 
+```bash
+go test -run "path/function name" -v(detaily describe) -cover(coverage) //test
+```
+
+# Information
+
+mock은 전체 테스트: coverage = 100% && 행동 관찰
+
+stubs는 특정 기능부분 테스트: coverage <= 100% && 상태 관찰
+
+의미는 이러하지만 사실 이 두 가지 테스트 방법은 따로 구분되지 않음.
+ex) mock 또한 < 100% 가능
+
+# Gin 사용법
+
+### Microservices 제어흐름
+Request -> Route Parser -> [Optional Middleware] -> Route Handler -> [Optional Middleware] -> Response
+
+```bash
+router := gin.Default() // router 생성
+
+// router.[GET or POST or etc](url string,HANDLER)
+// Route handler 정의
+router.GET("/accounts/:id",server.getAccount)
+```
+localhost:8080/accounts/'id'로 GET이 들어오면 server의 getAccount를 실행하여라.
+
+
+```bash
+func (server *Server) getAccount(ctx *gin.Context) {
+	var req getAccountRequest
+	if err := ctx.ShouldBindUri(&req); err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+		return
+	}
+	account, err := server.store.GetAccount(ctx, req.ID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+	ctx.JSON(http.StatusOK, account)
+}
+```
+
+ctx의
+
+
+
 # migrate
 
 __Database migrations written in Go. Use as [CLI](#cli-usage) or import as [library](#use-in-your-go-project).__

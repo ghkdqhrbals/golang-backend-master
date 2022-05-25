@@ -16,7 +16,7 @@ func NewServer(store db.Store) *Server {
 	router := gin.Default()
 	//router.SetTrustedProxies([]string{"0.0.0.0"})
 
-	// TODO: add routes to router
+	// send post&get to server
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
 	router.GET("/accounts", server.listAccount)
