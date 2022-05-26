@@ -66,7 +66,7 @@ ex) mock 또한 < 100% 가능
 
 ### Microservices 제어흐름
 Request -> Route Parser -> [Optional Middleware] -> Route Handler -> [Optional Middleware] -> Response
-
+### Gin router 생성
 ```bash
 router := gin.Default() // router 생성
 
@@ -75,6 +75,17 @@ router := gin.Default() // router 생성
 router.GET("/accounts/:id",server.getAccount)
 ```
 localhost:8080/accounts/'id'로 GET이 들어오면 server의 getAccount를 실행하여라.
+
+
+```bash
+type getAccountRequest struct {
+	ID int64 `uri:"id" binding:"required,min=1"`
+}
+```
+
+getAccount가 http로 오면 서버에서 다음과 같은 형식에 저장할 것이라고 명시
+
+ID는 1이상이고, 비어서는 안되며, ctx.ShouldBindUri을 사용하여 req에 저장할 것이기에 uri: 명시
 
 
 ```bash
@@ -96,8 +107,10 @@ func (server *Server) getAccount(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, account)
 }
 ```
+Unmarshelling(gin에서 지원) => ShouldBindUri
+req에 uri형식으로 오면 저장됨.
 
-ctx의
+server의 getAccount는
 
 
 
