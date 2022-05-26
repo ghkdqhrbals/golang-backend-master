@@ -26,9 +26,7 @@ func TestGetAccountAPI(t *testing.T) {
 		Return(account, nil)
 
 	// start test server and send request
-	fmt.Println("Before")
 	server := NewServer(store)
-	fmt.Println("After")
 
 	// request 생성
 	recorder := httptest.NewRecorder()
@@ -41,7 +39,6 @@ func TestGetAccountAPI(t *testing.T) {
 
 	// check its response
 	require.Equal(t, http.StatusOK, recorder.Code)
-	fmt.Println("Finished")
 }
 
 func randomAccount() db.Accounts {
