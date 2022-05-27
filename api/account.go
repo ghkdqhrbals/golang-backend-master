@@ -25,7 +25,6 @@ type listAccountRequest struct {
 
 func (server *Server) createAccount(ctx *gin.Context) {
 	var req createAccountRequest
-
 	// http.requests into req by unmarshelling json struct information
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
@@ -63,6 +62,7 @@ func (server *Server) getAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
+
 	ctx.JSON(http.StatusOK, account)
 }
 
