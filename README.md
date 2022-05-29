@@ -224,7 +224,7 @@ server의 getAccount는 server.store.GetAccount로 DB 쿼리 및 기타 ERROR �
 
 ## Versions
 
-Version | Libraries | Don?
+Version | Skills | Don?
 --------|------------|------
-**1.1v** | * Gin * Git | :white_check_mark: |
-**1.2v** | :white_check_mark: | :white_check_mark: |
+**1.1v** | Postresq, migration, Testing_enviroments, Viper, Sqlc, Git-Workflow | :white_check_mark: |
+**1.2v** | Gin, Postresq, migration, Testing_enviroments, Viper, Sqlc, Gomock, Git-Workflow | :white_check_mark: |
