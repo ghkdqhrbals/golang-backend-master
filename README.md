@@ -6,9 +6,18 @@
 ![Supported Go Versions](https://img.shields.io/badge/Go-1.16%2C%201.17-lightgrey.svg)
 [![GitHub Release](https://img.shields.io/github/release/golang-migrate/migrate.svg)](https://github.com/golang-migrate/migrate/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/golang-migrate/migrate)](https://goreportcard.com/report/github.com/golang-migrate/migrate)
+## Versions
+
+Version | Skills | Done?
+--------|------------|------
+**[1.1v](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[1.2v](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+
+
 # Updates
-* gomock 라이브러리를 이용하여 서비스 레이어의 테스트에서 DB 의존성을 제거함.
-즉, fake DB(in memory)를 통해 테스트함.
+* Gin으로 RPC 통신 추가 //[Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:gin)
+* Viper으로 configuration 자동설정 
+* Gomock으로 서비스 레이어의 테스트에서 DB 의존성을 제거함.
 
 ### sqlc로 쿼리문 인터페이스 생성
 ```bash
@@ -222,9 +231,3 @@ Unmarshelling(gin에서 지원) => ShouldBindUri
 server의 getAccount는 server.store.GetAccount로 DB 쿼리 및 기타 ERROR 전송
 
 
-## Versions
-
-Version | Skills | Don?
---------|------------|------
-**1.1v** | Postresq, migration, Testing_enviroments, Viper, Sqlc, Git-Workflow | :white_check_mark: |
-**1.2v** | Gin, Postresq, migration, Testing_enviroments, Viper, Sqlc, Gomock, Git-Workflow | :white_check_mark: |
