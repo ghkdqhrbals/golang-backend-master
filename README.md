@@ -33,4 +33,4 @@ Version | Skills | Done?
 1. Use sqlc interface with all query functions to interface
 2. Edit /.bash_profile for PATH to go/bin(to using mockgen)
 3. Execute mockgen to generate mock functions
-4. Set APIs for testing(TestGetAccountAPI)
+4. __Set APIs for testing(TestGetAccountAPI)__
