@@ -16,13 +16,13 @@ Version | Skills | Done?
 
 ## Updates
 * __Gin으로 RPC 통신 추가 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:gin))__
-1.1. Set router, routes
-1.2. Set various handler
-2.1. Get http request
-2.2. Use custom validator to check if it is a valid request.
-2.3. Binding JSON to STRUCT(request)
-2.4. Access Local Database -> Execute transactions -> Get results(all process can handle with error)
-3. Response
+1. Set router, routes
+2. Set various handler
+3. Get http request
+4. Use custom validator to check if it is a valid request.
+5. Binding JSON to STRUCT(request)
+6. Access Local Database -> Execute transactions -> Get results(all process can handle with error)
+7. Response
 
 * __Viper으로 configuration 자동설정 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:viper))__
 1. Set /app.env
@@ -30,8 +30,7 @@ Version | Skills | Done?
 3. import configurations in /main.go
 
 * __Gomock으로 서비스 레이어의 테스트에서 DB 의존성을 제거 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:mockdb))__
-1 Use sqlc interface with all query functions to interface
-2 Edit /.bash_profile for PATH to go/bin(to using mockgen)
-3 Execute mockgen to generate mock functions
-4 Set API for testing(TestGetAccountAPI)
-5 
+1. Use sqlc interface with all query functions to interface
+2. Edit /.bash_profile for PATH to go/bin(to using mockgen)
+3. Execute mockgen to generate mock functions
+4. Set APIs for testing(TestGetAccountAPI)
