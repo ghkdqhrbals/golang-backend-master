@@ -12,12 +12,10 @@ Version | Skills | Done?
 --------|------------|------
 **[1.1v](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[1.2v](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[1.3v](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
-__Work in VScode and Extensions below__
-* [Go Coverage Viewer](https://marketplace.visualstudio.com/items?itemName=soren.go-coverage-viewer)
-* [Go Extension Pack](https://marketplace.visualstudio.com/items?itemName=doggy8088.go-extension-pack)
-* [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName=premparihar.gotestexplorer)
-* [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
+__Bcrypt 논문(Blowfish encryption algorithm)__
+* [Bcrypt](https://www.usenix.org/legacy/event/usenix99/provos/provos.pdf)
 
 ## Updates
 * __Gin으로 RPC 통신 추가 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:gin))__
@@ -39,3 +37,10 @@ __Work in VScode and Extensions below__
 2. Edit /.bash_profile for PATH to go/bin(to using mockgen)
 3. Execute mockgen to generate mock functions
 4. __Set APIs for testing(TestGetAccountAPI)__
+
+__명령어는 Makefile에 정의__
+__Work in VScode and Extensions below__
+* [Go Coverage Viewer](https://marketplace.visualstudio.com/items?itemName=soren.go-coverage-viewer)
+* [Go Extension Pack](https://marketplace.visualstudio.com/items?itemName=doggy8088.go-extension-pack)
+* [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName=premparihar.gotestexplorer)
+* [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)

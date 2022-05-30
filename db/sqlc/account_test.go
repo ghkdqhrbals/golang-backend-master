@@ -29,8 +29,10 @@ import (
 // 	require.NotEmpty(t, account.CreatedAt)
 // }
 func createRandomAccounts(t *testing.T) Accounts {
+	user := createRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}

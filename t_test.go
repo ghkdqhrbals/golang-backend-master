@@ -22,6 +22,9 @@ type MyStruct struct {
 }
 
 func TestMapStructure1(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping testing in short mode")
+	}
 
 	doc1 := `
 	{
@@ -47,6 +50,9 @@ func TestMapStructure1(t *testing.T) {
 
 }
 func TestMapStructure2(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping testing in short mode")
+	}
 	myData := make(map[string]interface{})
 	myData["Name"] = "Wookiist"
 	myData["Age"] = int64(27)
