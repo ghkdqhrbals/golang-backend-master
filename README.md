@@ -10,14 +10,15 @@
 
 Version | Skills | Done?
 --------|------------|------
-**[1.1v](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[1.2v](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[1.3v](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.0.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.0.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.0.3](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
-__Bcrypt 논문(Blowfish encryption algorithm)__
+## Update
+__Bcrypt로 사용자 PW 저장(Blowfish encryption algorithm)__([Detail](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:bcrypt))
 * [Bcrypt](https://www.usenix.org/legacy/event/usenix99/provos/provos.pdf)
 
-## Updates
+## Update History
 * __Gin으로 RPC 통신 추가 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:gin))__
 1. Set router, routes
 2. Set various handler
