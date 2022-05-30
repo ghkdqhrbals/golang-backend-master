@@ -15,8 +15,11 @@ Version | Skills | Done?
 **[v1.0.3](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
 ## Update
-__Bcrypt로 사용자 PW 저장(Blowfish encryption algorithm)__([Detail](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:bcrypt))
-* [Bcrypt](https://www.usenix.org/legacy/event/usenix99/provos/provos.pdf)
+* __Bcrypt로 사용자 PW 저장(Blowfish encryption algorithm)__([Detail](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:bcrypt))
+1. Set util/password.go using bcrypt which can randomly generate cost, salt to get hashed password with params
+2. Set util/password_test.go for testing 
+3. Make api/user.go to set createUser handler
+4. Set routes("/user") for request from clients
 
 ## Update History
 * __Gin으로 RPC 통신 추가 ([Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:gin))__
