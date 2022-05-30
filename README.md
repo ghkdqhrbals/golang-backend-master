@@ -10,11 +10,17 @@
 
 Version | Skills | Done?
 --------|------------|------
-**[v1.0.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.0.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.0.3](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.0)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
-## Update
+## Update[v1.3.1]
+* __User password의 Testcases 정의__
+1. Set api/user_test.go TestCreateUserAPI test function
+    * cases: "OK", "InternalError", "DuplicateUsername", "InvalidUsername", "InvalidEmail", "TooShortPassword"
+2. Set Custom reply matcher(gomock)
+
+## Update[v1.3.0]
 * __Bcrypt로 사용자 PW 저장(Blowfish encryption algorithm)__([Detail](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:bcrypt))
 1. Set util/password.go using bcrypt which can randomly generate cost, salt to get hashed password with params
 2. Set util/password_test.go for testing 
@@ -42,6 +48,8 @@ Version | Skills | Done?
 3. Execute mockgen to generate mock functions
 4. __Set APIs for testing(TestGetAccountAPI)__
 
+## Notes
+* go test -run "function name" -v(detaily describe) -cover(coverage)
 __명령어는 Makefile에 정의__
 __Work in VScode and Extensions below__
 * [Go Coverage Viewer](https://marketplace.visualstudio.com/items?itemName=soren.go-coverage-viewer)

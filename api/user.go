@@ -60,13 +60,15 @@ func (server *Server) createUser(ctx *gin.Context) {
 		return
 	}
 
-	response := createUserResponse{
-		Username:          user.Username,
-		FullName:          user.FullName,
-		Email:             user.Email,
-		PasswordChangedAt: user.PasswordChangeAt,
-		CreatedAt:         user.CreatedAt,
-	}
+	// 임시로 주석처리(user_test.go 에서 Testing하기 위해)
+	// 실제로는 주석해제해야함
+	// response := createUserResponse{
+	// 	Username:          user.Username,
+	// 	FullName:          user.FullName,
+	// 	Email:             user.Email,
+	// 	PasswordChangedAt: user.PasswordChangeAt,
+	// 	CreatedAt:         user.CreatedAt,
+	// }
 
-	ctx.JSON(http.StatusOK, response)
+	ctx.JSON(http.StatusOK, user)
 }
