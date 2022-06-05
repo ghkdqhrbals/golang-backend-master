@@ -14,6 +14,11 @@ Version | Skills | Done?
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.0)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
+All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
+
+## Update[v1.3.2]
+
+
 ## Update[v1.3.1]
 * __User password의 Testcases 정의__
 1. Set api/user_test.go TestCreateUserAPI test function
