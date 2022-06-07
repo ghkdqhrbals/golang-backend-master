@@ -13,11 +13,27 @@ Version | Skills | Done?
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.0)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.0)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 
-## Update[v1.3.2]
+## Update[v1.4.0]
+* __JWT(JSON Web Token)의 HMAC-SHA256(HS256) algorithm를 통한 payload+header 'Encryption' and 'MAC' 생성__
+1. Set secretKey as random 256 bits(As we use HS256, Key should be 256 bits) Temporary!
+2. Make CreateToken function(interface)
+    * ( [HEADER]:'alg:HS256,typ:jwt', [PAYLOAD]:'id:string, name:string, expiredAt:time', [SIGNATURE]:'HMAC([HEADER],[PAYLOAD]).TAG' )
+3. Make VerifyToken function(interface)
+    * Check HEADER, SIGNATURE, ...
+4. Set test enviroments
+    * case Invalid Header algorithm, MAC failed, Expiration, etc.
+* __PASETO(Platform-Agnostic Security Tokens)의 chacha20Poly1305 algorithm를 통한 payload+header+nonce 'Encryption' and 'MAC' 생성__
+1. Set secretKey as random 256 bits(As we use chacha20Poly1305, Key should be 256 bits) Temporary!
+2. Make CreateToken function(interface)
+3. Make VerifyToken function(interface)
+4. Set test env.
 
+// * __AES_GCM_SHA384 및 TLS 1.3v__
 
 ## Update[v1.3.1]
 * __User password의 Testcases 정의__
