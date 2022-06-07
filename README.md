@@ -33,8 +33,6 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
 3. Make VerifyToken function(interface)
 4. Set test env.
 
-// * __AES_GCM_SHA384 및 TLS 1.3v__
-
 ## Update[v1.3.1]
 * __User password의 Testcases 정의__
 1. Set api/user_test.go TestCreateUserAPI test function
