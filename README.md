@@ -12,14 +12,27 @@ Version | Skills | Done?
 --------|------------|------
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.0)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.0)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.1)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 ## Update[v1.4.1]
-* __Gin으로 Token Authentication RPC 통신 추가__
-1. Set user.go/loginUser for Create/Verify Token
+* __Token Authentication Middlewrae 추가__
+1. Set user.go/loginUser for create/verify TOKEN
+2. Set Route(createAccounts, transferMoney, etc.) Group that need authorization.
+3. Make authMiddleware for pre-check requests whether they have TOKEN for authorization
+3. Edit api/server.go
+    * Before get request, check and verify http header's authorized part.
+    * If there is a TOKEN that server created, pass request to actual handler.
+    * If no TOKEN exists, abort session and send response.
+4. 위의 http통신은 TLS로 encrypt되었음을 가정한다.
+    * TLS가 적용되지 않았으면 TOKEN가 탈취되었을 때, Server에 권한없이 RPC 통신하여 DB 탐색가능.
+* __Testcase정의__
+1. User -----      Login       --> Server    [LoginParams] = username, password
+2. User <----      TOKEN       --- Server    [TOKEN] = chacha20poly1305(nonce, Server's Key, AEAD, Payload{username, duration})
+3. User -----    CreateAccount --> Server    [Params] = currency, TOKEN
+4. User <----  Account's Info  --- Server    [Account] = verifyToken(Server's Key, TOKEN)
 
 ## Update[v1.4.0]
 * __JWT(JSON Web Token)의 HMAC-SHA256(HS256) algorithm를 통한 payload+header 'Encryption' and 'MAC' 생성__
