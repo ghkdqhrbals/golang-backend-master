@@ -18,7 +18,7 @@ Version | Skills | Done?
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 ## Update[v1.4.1]
-* __Token Authentication Middlewrae 추가__
+* __Token Authentication Middleware 추가__
 1. Set user.go/loginUser for create/verify TOKEN
 2. Set Route(createAccounts, transferMoney, etc.) Group that need authorization.
 3. Make authMiddleware for pre-check requests whether they have TOKEN for authorization
@@ -26,7 +26,7 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
     * Before get request, check and verify http header's authorized part.
     * If there is a TOKEN that server created, pass request to actual handler.
     * If no TOKEN exists, abort session and send response.
-4. 위의 http통신은 TLS로 encrypt되었음을 가정한다.
+4. 위의 http통신은 TLS로 encrypt되었음을 가정한다. __[TLS Details](https://github.com/ghkdqhrbals/simplebank/wiki/ghkdqhrbals:SSL-TLS)__
     * TLS가 적용되지 않았으면 TOKEN가 탈취되었을 때, Server에 권한없이 RPC 통신하여 DB 탐색가능.
 * __Testcase정의__
 ```
