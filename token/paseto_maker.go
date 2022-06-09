@@ -8,8 +8,8 @@ import (
 	"github.com/o1egl/paseto"
 )
 
-// local: chacha20, etc
-// public: Ed25519
+// local alg: chacha20, etc
+// public alg: Ed25519
 type PasetoMaker struct {
 	paseto       *paseto.V2
 	symmetricKey []byte
@@ -46,6 +46,7 @@ func (maker *PasetoMaker) VerifyToken(token string) (*Payload, error) {
 		return nil, ErrInvalidToken
 	}
 
+	//if payload.Username ==
 	err = payload.Valid()
 	if err != nil {
 		return nil, err

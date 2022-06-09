@@ -81,21 +81,24 @@ func TestUpdateAccounts(t *testing.T) {
 }
 
 func TestListAccounts(t *testing.T) {
+	var lastAccount Accounts
+
+	for i := 0; i < 10; i++ {
+		lastAccount = createRandomAccounts(t)
+	}
 
 	arg := ListAccountParams{
-		Limit:  10,
-		Offset: 1,
+		Owner:  lastAccount.Owner,
+		Limit:  5,
+		Offset: 0,
 	}
-	for i := int64(0); i < int64(arg.Limit); i++ {
-		createRandomAccounts(t)
-	}
-
 	accounts, err := testQueries.ListAccount(context.Background(), arg)
 	require.NoError(t, err)
-	require.Len(t, accounts, 10)
+	require.NotEmpty(t, accounts)
 
 	for _, account := range accounts {
 		require.NotEmpty(t, account)
+		require.Equal(t, lastAccount.Owner, account.Owner) // List account의 Owner, lastaccount owner 확인
 	}
 
 }
