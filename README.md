@@ -29,11 +29,12 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
 4. 위의 http통신은 TLS로 encrypt되었음을 가정한다.
     * TLS가 적용되지 않았으면 TOKEN가 탈취되었을 때, Server에 권한없이 RPC 통신하여 DB 탐색가능.
 * __Testcase정의__
+```
 1. User -----      Login       --> Server    [LoginParams] = username, password
 2. User <----      TOKEN       --- Server    [TOKEN] = chacha20poly1305(nonce, Server's Key, AEAD, Payload{username, duration})
 3. User -----    CreateAccount --> Server    [Params] = currency, TOKEN
 4. User <----  Account's Info  --- Server    [Account] = verifyToken(Server's Key, TOKEN)
-
+```
 ## Update[v1.4.0]
 * __JWT(JSON Web Token)의 HMAC-SHA256(HS256) algorithm를 통한 payload+header 'Encryption' and 'MAC' 생성__
 1. Set secretKey as random 256 bits(As we use HS256, Key should be 256 bits) Temporary!
