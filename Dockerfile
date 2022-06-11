@@ -1,1 +1,3 @@
-FROM golang:1.15.5-alpine
+FROM golang:1.18.3-alpine3.16
+WORKDIR /app
+COPY .

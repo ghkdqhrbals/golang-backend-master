@@ -1,7 +1,6 @@
 package token
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -20,16 +19,12 @@ func TestPasetoMaker(t *testing.T) {
 	expiredAt := issuedAt.Add(duration)
 
 	token, err := maker.CreateToken(username, duration)
-	fmt.Println(token)
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
 
 	payload, err := maker.VerifyToken(token)
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
-	fmt.Println(token)
-	fmt.Println(payload.ID)
-	fmt.Println(payload.Username)
 
 	require.NotZero(t, payload.ID)
 	require.Equal(t, username, payload.Username)
