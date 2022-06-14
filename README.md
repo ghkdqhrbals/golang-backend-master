@@ -13,7 +13,7 @@ Version | Skills | Done?
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 
