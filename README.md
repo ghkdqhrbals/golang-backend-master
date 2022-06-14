@@ -19,7 +19,8 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
 
 ## Update[v1.4.2]
 * __Dockerfile & Docker-compose 수정__
-1. Set shell script(wait-for-it.sh) to wait until postgres is ready
+1. Set shell script(wait-for-it.sh) to wait until postgres is ready[Detail](https://github.com/peter-evans/docker-compose-healthcheck)
+    * As we alpine image, 'apk add bash' needed
 2. Set shell script(start.sh) to migrate db up
 3. Edit Dockerfile to add needed files
     * migrate, app.env, main(object file), pre-setting shell script(wait-for-it.sh, start.sh)
