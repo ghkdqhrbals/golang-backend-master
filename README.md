@@ -13,10 +13,18 @@ Version | Skills | Done?
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.1)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
+
+## Update[v1.4.2]
+* __Dockerfile & Docker-compose 수정__
+1. Set shell script(wait-for-it.sh) to wait until postgres is ready
+2. Set shell script(start.sh) to migrate db up
+3. Edit Dockerfile to add needed files
+    * migrate, app.env, main(object file), pre-setting shell script(wait-for-it.sh, start.sh)
+4. Make docker-compose.yaml to specify services name and environment variables
+
 ## Update[v1.4.1]
 * __Token Authentication Middleware 추가__
 1. Set user.go/loginUser for create/verify TOKEN
