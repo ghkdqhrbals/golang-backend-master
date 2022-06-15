@@ -13,9 +13,28 @@ Version | Skills | Done?
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __AWS__, __JQ__, __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
+## Update[v1.4.3]
+* __Github action으로 자동 AWS docker image upload__
+1. Set Configure AWS credentials
+2. Add AWS_ACCESS_KEY_ID, KEY in Github Repositry secrets
+    * __AWS-IAM__ secrets:AWS_ACCESS_KEY_ID, AWS_ACCESS_KEY
+3. Launch deploy action
+    * Get secrets from Git and Access with token
+    * Login
+    * build images and Deploy to __AWS-ECR__ ap-northeast-2
+4. 
+
+* __AWS-ECR, AWS-Secrets Manager, AWS-IAM, AWS-RDS 추가__
+1. Secrets Manager로 Paseto의 Payload를 encrypt/decrypt하는 symmetric_key 및 RDS port, RDS root, key 관리
+2. Set IAM(Identity and Access Management) for safe AWS resource access
+3. Set ECR(Elastic Container Registry) in ap-northeast-2
+4. Set RDS(Relational Database Storage) in us-west-1, postgres12
+
+* __JQ__
 
 ## Update[v1.4.2]
 * __Dockerfile & Docker-compose 수정__
