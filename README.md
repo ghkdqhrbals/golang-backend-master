@@ -17,7 +17,7 @@ Version | Skills | Done?
 
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
-## Update[v1.4.3]
+## Update[v1.4.3] 
 * __Github action으로 자동 AWS docker image upload__
 1. Set Configure AWS credentials
 2. Add AWS_ACCESS_KEY_ID, KEY in Github Repositry secrets
