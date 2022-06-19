@@ -42,8 +42,7 @@ jobs:
         docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
 
     - name: Update kube config
-      run: |
-        aws eks update-kubeconfig --name golang-backend-cluster --region ap-northeast-2
+      run: aws eks update-kubeconfig --name golang-backend-cluster --region ap-northeast-2
     
     - name: Deploy image to AWS EKS
       run: |
