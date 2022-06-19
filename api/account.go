@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 
-	db "github.com/ghkdqhrbals/simplebank/db/sqlc"
-	"github.com/ghkdqhrbals/simplebank/token"
+	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
+	"github.com/ghkdqhrbals/golang-backend-master/token"
 	"github.com/lib/pq"
 
 	"github.com/gin-gonic/gin"

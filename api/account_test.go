@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	mockdb "github.com/ghkdqhrbals/simplebank/db/mock"
-	db "github.com/ghkdqhrbals/simplebank/db/sqlc"
-	"github.com/ghkdqhrbals/simplebank/token"
-	"github.com/ghkdqhrbals/simplebank/util"
+	mockdb "github.com/ghkdqhrbals/golang-backend-master/db/mock"
+	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
+	"github.com/ghkdqhrbals/golang-backend-master/token"
+	"github.com/ghkdqhrbals/golang-backend-master/util"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )

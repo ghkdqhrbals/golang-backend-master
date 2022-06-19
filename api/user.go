@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	db "github.com/ghkdqhrbals/simplebank/db/sqlc"
-	"github.com/ghkdqhrbals/simplebank/util"
+	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
+	"github.com/ghkdqhrbals/golang-backend-master/util"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 )
