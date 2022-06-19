@@ -12,7 +12,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_SOURCE=postgresql://root:secret@postgres:5432/simple_bank?sslmode=disable
+      - DB_SOURCE=postgresql://root:secret@url:port/simple_bank
     depends_on:
       - postgres
     entrypoint: ["/app/wait-for-it.sh","postgres:5432","--","/app/start.sh"]
