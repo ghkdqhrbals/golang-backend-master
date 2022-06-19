@@ -38,8 +38,12 @@ jobs:
         ECR_REPOSITORY: simplebank
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t latest
-        docker push -a $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name golang-backend-cluster --region ap-northeast-2
+    
     - name: Deploy image to AWS EKS
       run: |
         kubectl apply -f eks/aws-auth.yaml
