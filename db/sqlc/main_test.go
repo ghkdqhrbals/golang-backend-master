@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ghkdqhrbals/simplebank/util"
+	"github.com/ghkdqhrbals/golang-backend-master/util"
 
 	_ "github.com/lib/pq"
 )

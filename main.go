@@ -4,10 +4,10 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/ghkdqhrbals/simplebank/api"
-	"github.com/ghkdqhrbals/simplebank/util"
+	"github.com/ghkdqhrbals/golang-backend-master/api"
+	"github.com/ghkdqhrbals/golang-backend-master/util"
 
-	db "github.com/ghkdqhrbals/simplebank/db/sqlc"
+	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
 
 	_ "github.com/lib/pq"
 )

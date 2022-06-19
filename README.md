@@ -14,7 +14,10 @@ Version | Skills | Done?
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __AWS__, __JQ__, __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :hourglass: |
-
+# Overview   
+![Alt text](/image/deploy.jpg)
+![Alt text](/image/aws-cloud.jpg)
+![Alt text](image/safe-password-storing.jpg)
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 ## Update[v1.4.3] 

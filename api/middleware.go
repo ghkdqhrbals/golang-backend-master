@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/ghkdqhrbals/simplebank/token"
+	"github.com/ghkdqhrbals/golang-backend-master/token"
 	"github.com/gin-gonic/gin"
 )
 
