@@ -13,13 +13,32 @@ Version | Skills | Done?
 **[v1.1](https://github.com/ghkdqhrbals/simplebank/tree/1.1v)** | Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.2](https://github.com/ghkdqhrbals/simplebank/tree/1.2v)** | __Gin__, __Viper__, __Gomock__, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
 **[v1.3](https://github.com/ghkdqhrbals/simplebank/tree/v1.3.1)** | __Bcrypt__, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
-**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.2)** | __AWS__, __JQ__, __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :hourglass: |
+**[v1.4](https://github.com/ghkdqhrbals/simplebank/tree/v1.4.4)** | __NGINX__, __Kubernetes__, __AWS__, __JQ__, __Docker__, __JWT__, __PASETO__, Bcrypt, Gin, Viper, Gomock, Postresq, migration, Testing_enviroments, Sqlc, Git-Workflow | :white_check_mark: |
+
 # Overview   
+## How can we automatically deploy our service?
 ![Alt text](/image/deploy.jpg)
+## We use AWS with following service
 ![Alt text](/image/aws-cloud.jpg)
+## How can we safely store user password in RDS?
 ![Alt text](image/safe-password-storing.jpg)
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
+## Update[v1.4.4]
+* __Kubernetes Cluster 설정__
+1. Set aws-ath.yaml to access AWS-EKS(with granted user)
+2. Set deployment.yaml to get image from AWS-ECR and run with 2 replica(pod)
+3. Set issuer.yaml to issue TLS certificate
+    * get certificate from 'letsencrypt' with domain 'api.hwangbogyumin.com'(free)
+4. Set ingress.yaml with Nginx ingress controller
+    * request -> api.hwangbogyumin.com
+    * api.hwangbogyumin.com -> aws-route-53 my arn
+    * aws-route-53 my arn -> nginx-ingress address
+    * nginx-ingress address -> ingress-service(TLS)
+    * ingress-service ->> server pods(1,2)
+
+* __AWS-Route-53에서 Domain 생성 및 Kubernetes Ingress-service pods 연결__
+
 ## Update[v1.4.3] 
 * __Github action으로 자동 AWS docker image upload__
 1. Set Configure AWS credentials
@@ -29,7 +48,6 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
     * Get secrets from Git and Access with token
     * Login
     * build images and Deploy to __AWS-ECR__ ap-northeast-2
-4. 
 
 * __AWS-ECR, AWS-Secrets Manager, AWS-IAM, AWS-RDS 추가__
 1. Secrets Manager로 Paseto의 Payload를 encrypt/decrypt하는 symmetric_key 및 RDS port, RDS root, key 관리
@@ -38,6 +56,9 @@ All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki
 4. Set RDS(Relational Database Storage) in us-west-1, postgres12
 
 * __JQ__
+1. Get RDS informations and etc. from AWS secrets manager
+2. Transform AWS secrets format into JSON format using JQ
+3. Based on json data, set app.env with corresponding data
 
 ## Update[v1.4.2]
 * __Dockerfile & Docker-compose 수정__
