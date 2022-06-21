@@ -17,7 +17,7 @@ spec:
   - host: "api.hwangbogyumin.com"
     http:
       paths:
-      - pathType: Prefix
+      - pathType: Prefix # 443, 80 etc. -> 80 if "/" prefix
         path: "/"
         backend:
           service:
