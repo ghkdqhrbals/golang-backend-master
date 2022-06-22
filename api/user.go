@@ -2,7 +2,6 @@ package api
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -10,6 +9,7 @@ import (
 	"github.com/ghkdqhrbals/golang-backend-master/util"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
+	"github.com/sirupsen/logrus"
 )
 
 type createUserRequest struct {
@@ -39,7 +39,6 @@ func newUserResponse(user db.Users) userResponse {
 }
 
 func (server *Server) testCreateUser(ctx *gin.Context) {
-	fmt.Println("testCreateUser!")
 	var req createUserRequest
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -77,9 +76,9 @@ func (server *Server) testCreateUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, user)
 }
 
-func (server *Server) createUser(ctx *gin.Context) {
+// Synchronous api handler
+func (server *Server) createUser_synchronous(ctx *gin.Context) {
 	var req createUserRequest
-
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
@@ -111,18 +110,92 @@ func (server *Server) createUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-
-	// 임시로 주석처리(user_test.go 에서 Testing하기 위해)
-	// 실제로는 주석해제해야함
-	// response := createUserResponse{
-	// 	Username:          user.Username,
-	// 	FullName:          user.FullName,
-	// 	Email:             user.Email,
-	// 	PasswordChangedAt: user.PasswordChangeAt,
-	// 	CreatedAt:         user.CreatedAt,
-	// }
 	response := newUserResponse(user)
 	ctx.JSON(http.StatusOK, response)
+}
+
+// Asynchronous api handler
+func (server *Server) createUser_asynchronous(ctx *gin.Context) {
+	counter := server.avaliable
+	server.avaliable++
+	result := make(chan int)
+	errb := make(chan error)
+	responseb := make(chan userResponse)
+	go func(ctx *gin.Context, counter int) {
+		counter++
+		logrus.WithFields(logrus.Fields{
+			"thread_number": counter,
+		}).Info("Start create user api")
+
+		var req createUserRequest
+		if err := ctx.ShouldBindJSON(&req); err != nil {
+			result <- http.StatusBadRequest
+			errb <- err
+			logrus.WithFields(logrus.Fields{
+				"Status": "bad request",
+				"thread": counter,
+			}).Warn("Finished with error")
+			return
+		}
+
+		hashedPassword, err := util.HashPassword(req.Password)
+		if err != nil {
+			result <- http.StatusInternalServerError
+			errb <- err
+			logrus.WithFields(logrus.Fields{
+				"Status":        "StatusInternalServerError",
+				"thread_number": counter,
+			}).Warn("Finished with error")
+			return
+		}
+
+		arg := db.CreateUserParams{
+			Username:       req.Username,
+			HashedPassword: hashedPassword,
+			FullName:       req.FullName,
+			Email:          req.Email,
+		}
+
+		user, err := server.store.CreateUser(ctx, arg)
+		if err != nil {
+			if pqErr, ok := err.(*pq.Error); ok {
+				// User은 username, email이 unique key로 설정되어있음.
+				switch pqErr.Code.Name() {
+				case "unique_violation":
+					result <- http.StatusForbidden
+					errb <- err
+					logrus.WithFields(logrus.Fields{
+						"Status":        "unique_violation",
+						"thread_number": counter,
+					}).Warn("Finished with error")
+					return
+				}
+			}
+			result <- http.StatusInternalServerError
+			errb <- err
+			logrus.WithFields(logrus.Fields{
+				"Status":        "StatusInternalServerError",
+				"thread_number": counter,
+			}).Warn("Finish")
+			return
+		}
+		response := newUserResponse(user)
+		result <- http.StatusOK
+		responseb <- response
+		logrus.WithFields(logrus.Fields{
+			"Status":        "StatusOK",
+			"username":      req.Username,
+			"email":         req.Email,
+			"thread_number": counter,
+		}).Info("Successfully created")
+
+	}(ctx.Copy(), counter)
+	msg := <-result
+	if msg == http.StatusOK {
+		ctx.JSON(msg, <-responseb)
+	} else {
+		ctx.JSON(msg, errorResponse(<-errb))
+	}
 }
 
 type loginUserRequest struct {

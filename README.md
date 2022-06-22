@@ -22,6 +22,8 @@ Version | Skills | Done?
 ![Alt text](/image/aws-cloud.jpg)
 ## How can we safely store user password in RDS?
 ![Alt text](image/safe-password-storing.jpg)
+## How can we handle multiple api request with asynchronous response?
+![Alt text](image/api-multi-thread.jpg)
 
 All Details and Studies in [wiki](https://github.com/ghkdqhrbals/simplebank/wiki)
 ## Update[v1.4.4]
