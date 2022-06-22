@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 
 	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
@@ -17,6 +18,7 @@ type Server struct {
 	store      db.Store
 	tokenMaker token.Maker
 	router     *gin.Engine
+	avaliable  int
 }
 
 // Configuration setting 받아와서 서버 open
@@ -29,6 +31,7 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 		config:     config,
 		store:      store,
 		tokenMaker: tokenMaker,
+		avaliable:  0,
 	}
 
 	// Check supportable currency every http request
@@ -39,7 +42,29 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 
 	server.setupRouter()
 
+	// ------------------for Testing Purpose
+	// recorder := httptest.NewRecorder()
+	// url := "/users"
+	// for i := 0; i < 10; i++ {
+	// 	go func() {
+	// 		request, _ := http.NewRequest(http.MethodPost, url, bytes.NewReader(dataMarchal()))
+	// 		server.router.ServeHTTP(recorder, request)
+	// 	}()
+	// }
+	// ------------------for Testing Purpose
+
 	return server, nil
+}
+
+func dataMarchal() []byte {
+	data, _ := json.Marshal(
+		gin.H{
+			"username":  util.RandomString(6),
+			"password":  "secret",
+			"full_name": util.RandomString(6),
+			"email":     util.RandomEmail()})
+
+	return data
 }
 
 func NewServerForTesting(config util.Config, store db.Store) (*Server, error) {
@@ -74,7 +99,7 @@ func NewServerForTesting(config util.Config, store db.Store) (*Server, error) {
 
 func (server *Server) setupRouter() {
 	router := gin.Default()
-	router.POST("/users", server.createUser)
+	router.POST("/users", server.createUser_asynchronous)
 	router.POST("/users/login", server.loginUser)
 
 	// Set API route and which handler will be act by its route
