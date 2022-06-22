@@ -18,6 +18,7 @@ Version | Skills | Done?
 # Overview   
 ## How can we automatically deploy our service?
 ![Alt text](/image/deploy.jpg)
+![example](image/ci-cd-deploy-example.jpg)
 ## We use AWS with following service
 ![Alt text](/image/aws-cloud.jpg)
 ## How can we safely store user password in RDS?
