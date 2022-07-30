@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: golang-backend-api
-        image: 305603388825.dkr.ecr.ap-northeast-2.amazonaws.com/simplebank:latest
+        image: simplebank:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

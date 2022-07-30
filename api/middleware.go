@@ -19,6 +19,7 @@ const (
 func authMiddleware(tokenMaker token.Maker) gin.HandlerFunc {
 	// Header 에서 Token 가져옴
 	return func(ctx *gin.Context) {
+
 		authortizeationHeader := ctx.GetHeader(authortizeationHeaderKey)
 		if len(authortizeationHeader) == 0 {
 			err := errors.New("authorization header is not provided")

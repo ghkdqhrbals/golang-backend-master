@@ -5,6 +5,8 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=simple_bank
+    ports:
+      - "5432:5432" # purpose to exposeing ports. Except this ports, you can use only inside services
   api:
     build:
       context: .
@@ -12,7 +14,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_SOURCE=postgresql://root:secret@url:port/simple_bank
+      - DB_SOURCE=postgresql://root:secret@postgres:5432/simple_bank?sslmode=disable
     depends_on:
       - postgres
     entrypoint: ["/app/wait-for-it.sh","postgres:5432","--","/app/start.sh"]

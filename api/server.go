@@ -3,10 +3,12 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 
 	db "github.com/ghkdqhrbals/golang-backend-master/db/sqlc"
 	"github.com/ghkdqhrbals/golang-backend-master/token"
 	"github.com/ghkdqhrbals/golang-backend-master/util"
+	"github.com/gin-contrib/cors"
 	"github.com/go-playground/validator/v10"
 
 	"github.com/gin-gonic/gin"
@@ -83,6 +85,15 @@ func NewServerForTesting(config util.Config, store db.Store) (*Server, error) {
 	}
 
 	router := gin.Default()
+	//allowedOrigin := ["http://localhost:3000"]
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"PUT", "GET", "PATCH"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 	router.POST("/users", server.testCreateUser)
 	router.POST("/users/login", server.loginUser)
 	authRoutes := router.Group("/").Use(authMiddleware(server.tokenMaker))
@@ -99,6 +110,14 @@ func NewServerForTesting(config util.Config, store db.Store) (*Server, error) {
 
 func (server *Server) setupRouter() {
 	router := gin.Default()
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"PUT", "GET", "PATCH"},
+		AllowHeaders:     []string{"Origin", "Content-type"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 	router.POST("/users", server.createUser_asynchronous)
 	router.POST("/users/login", server.loginUser)
 
