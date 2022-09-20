@@ -22,4 +22,6 @@ server:
 	go run main.go
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/ghkdqhrbals/simplebank/db/sqlc Store
-.PHONY: postgres restartpostgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc test server mock
+kt:
+	kubectl apply -f postgres-deployment.yaml,postgres-service.yaml,api-deployment.yaml,api-service.yaml,ingress.yaml
+.PHONY: postgres restartpostgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc test server mock kt

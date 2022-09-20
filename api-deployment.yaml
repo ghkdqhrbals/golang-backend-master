@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-backend-api-deployment
+  labels:
+    app: golang-backend-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: golang-backend-api
+  template:
+    metadata:
+      labels:
+        app: golang-backend-api
+    spec:
+      containers:
+      - name: golang-backend-api
+        image: ghkdqhrbals/simplebank:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        env:
+          - name: DB_SOURCE
+            value: postgresql://root:secret@postgres:5432/simple_bank?sslmode=disable
